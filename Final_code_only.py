@@ -20,8 +20,6 @@ This model fits well for both the training and test sets and is not over fitting
 
 import numpy as np
 import pandas as pd
-import seaborn as sn
-import matplotlib.pyplot as plt
 from sklearn.ensemble import GradientBoostingRegressor, ExtraTreesRegressor
 from sklearn.ensemble import RandomForestRegressor, StackingRegressor
 from sklearn.svm import SVR
@@ -134,13 +132,3 @@ SUBMISSION = pd.DataFrame()
 SUBMISSION['Id'] = range(PREDICTIONS.shape[0])
 SUBMISSION['Predicted'] = PREDICTIONS
 SUBMISSION.to_csv("submission.csv", index=False)
-
-# Creating distribution graph
-
-Y = TRAIN_DS['count']
-GRAPH, (TRN, TST) = plt.subplots(ncols=2)
-GRAPH.set_size_inches(20, 5)
-sn.distplot(Y, ax=TRN, bins=100)
-sn.distplot(PREDICTIONS, ax=TST, bins=100)
-TRN.set(title="Training Set Distbution")
-TST.set(title="Test Set Distribution")
